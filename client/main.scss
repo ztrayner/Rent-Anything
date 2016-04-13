@@ -1,0 +1,286 @@
+// copy of the _settings.scss from foundation-sites package
+// here settings can be overwritten
+@import 'custom-foundation-settings.scss';
+@import '{}/node_modules/foundation-sites/scss/foundation.scss';
+@import '{}/imports/utilities/ng-dialog/css/ngDialog.scss';
+@import '{}/imports/utilities/ng-dialog/css/ngDialog-theme-default.scss';
+@include foundation-everything;
+// or you can unclude only some of the parts:
+// @include foundation-global-styles;
+// @include foundation-grid;
+// @include foundation-typography;
+// @include foundation-button;
+// @include foundation-forms;
+// @include foundation-visibility-classes;
+// @include foundation-float-classes;
+// @include foundation-accordion;
+// @include foundation-accordion-menu;
+// @include foundation-badge;
+// @include foundation-breadcrumbs;
+// @include foundation-button-group;
+// @include foundation-callout;
+// @include foundation-close-button;
+// @include foundation-drilldown-menu;
+//@include foundation-dropdown;
+// @include foundation-dropdown-menu;
+// @include foundation-flex-video;
+// @include foundation-label;
+// @include foundation-media-object;
+// @include foundation-menu;
+// @include foundation-off-canvas;
+// @include foundation-orbit;
+// @include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-reveal;
+// @include foundation-switch;
+// @include foundation-table;
+// @include foundation-tabs;
+// @include foundation-thumbnail;
+// @include foundation-title-bar;
+// @include foundation-tooltip;
+// @include foundation-top-bar;
+
+/* CSS declarations go here */
+
+
+/*** Foundation overrides ***/
+
+.column:last-child:not(:first-child),
+.columns:last-child:not(:first-child) {
+    float: left;
+}
+
+
+/** Top Bar **/
+
+.top-bar,
+.top-bar ul {
+    background-color: $primary-color;
+}
+
+.menu-text {
+    color: #ffffff;
+    padding: 0.7rem 1rem;
+}
+
+.title-bar {
+    display: none;
+}
+
+.top-bar a {
+    color: #ffffff;
+}
+
+.top-bar a:hover {
+    color: #ffffff;
+    background-color: lighten($primary-color, 10%);
+}
+
+.no-js .top-bar {
+    display: none;
+}
+
+.no-js {
+    @include breakpoint(small only) {
+        .top-bar {
+            display: none;
+        }
+    }
+    @include breakpoint(medium) {
+        .title-bar {
+            display: none;
+        }
+    }
+}
+
+/*** end of top bar ***/
+/*** Horizontal to vertical menu ***/
+@media screen and (min-width: 40em) {
+  .menu.medium-horizontal.spaced > li {
+      padding-right: 1.5rem;
+  }
+}
+/*** Card ***/
+
+@import url(//fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900);
+html,
+body {
+    background: #FAFAFA;
+}
+
+.card {
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #272727;
+    border-radius: 2px;
+    font-size: .9rem;
+    margin: 1.2rem 0;
+    .title {
+        line-height: 1rem;
+        font-size: 1.1rem;
+        font-weight: 300;
+    }
+    .content {
+        padding: 1.2rem;
+        font-weight: 300;
+        border-radius: 0 0 2px 2px;
+        position: relative;
+        box-sizing: border-box;
+        overflow: hidden;
+        &.y-scroll {
+          overflow-y: auto;
+        }
+        &.large {
+            height: 290px;
+        }
+        &.medium {
+            height: 210px;
+        }
+        &.small {
+            height: 130px;
+        }
+        &.bordered-top {
+          border-top: 1px solid rgba(160, 160, 160, 0.2);
+        }
+        &.bordered-bottom {
+          border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+        }
+        &.tight {
+          padding: .1rem 1.2rem;
+        }
+        &:before {
+            content: '';
+            float: left;
+            width: 5px;
+            height: inherit;
+        }
+    }
+    .meta {
+      font-size: .8rem;
+      color: rgba(0, 0, 0, 0.66);
+    }
+    p {
+        margin: 0;
+    }
+    .action {
+        border-top: 1px solid rgba(160, 160, 160, 0.2);
+        padding: 1.3rem;
+        & > div:not(:first-child) {
+          margin-top: 1rem;
+        }
+    }
+    a {
+        color: #ffab40;
+        margin-right: 1.3rem;
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    .image {
+        position: relative;
+        min-height: 135px;
+        .title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            color: #fff;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.75);
+        }
+        img {
+            border-radius: 2px 2px 0 0;
+            width: 100%;
+        }
+        & .remove {
+              position: absolute;
+              top: 0;
+              right: 0;
+              color: #fff;
+              width: 25px;
+              height: 25px;
+              background: rgba(218, 29, 29, 0.8);
+              margin: 5px;
+              text-align: center;
+              padding: 3px 0 0 0;
+              cursor: pointer;
+        }
+    }
+}
+/*** end of card ***/
+
+/*** xeditable ***/
+form.editable-wrap.editable-text, form.editable-wrap.editable-textarea {
+    padding-bottom: 50px;
+}
+.editable-buttons > button {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 0;
+    padding: 0.85em 1em;
+    margin: 0 .5rem 0 0;
+    font-size: 0.75rem;
+    background-color: $primary-color;
+    color: $white;
+    text-transform: capitalize;
+}
+input.editable-has-buttons.editable-input {
+    margin: 0;
+}
+.editable:hover {
+    text-decoration: underline;
+    color: $primary-color;
+    cursor: pointer;
+}
+/*** End of xeditable ***/
+
+/*** Switch ***/
+.switch > span {
+  position: absolute;
+  margin-left: 0.5em;
+  font-weight: 300;
+  color: #000;
+}
+/*** Utility classes ***/
+.green-text {
+  color: $green;
+}
+.green {
+  background-color: $green;
+}
+.large-text {
+    font-size: 1.333rem;
+}
+.striped-children > *:nth-child(even) {
+    background: $secondary-color;
+}
+.inner-bordered > *:nth-child(even):last-child {
+      border-top: rgba(0,0,0,.2) 0.5px solid;
+}
+.inner-bordered > *:nth-child(even):not(:last-child) {
+      border-top: rgba(0,0,0,.2) 0.5px solid;
+      border-bottom: rgba(0,0,0,.2) .5px solid;
+}
+.all-caps {
+  text-transform: uppercase;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline-block-center {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
