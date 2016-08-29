@@ -44,7 +44,8 @@ Meteor.methods({
             username: Meteor.user().username,
             purchasePrice: newItem.purchasePrice,
             hourlyRate: newItem.hourlyRate,
-            dailyRate: newItem.dailyRate
+            dailyRate: newItem.dailyRate,
+            photoURLs: newItem.photoURLs
         });
     },
     'items.remove' (itemId) {

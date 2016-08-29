@@ -27,7 +27,7 @@
                 <div class="image">
                     <img ng-src="{{item.photoURLs[0]}}">
                     <span class="clickable remove" ng-if="item.owner === $ctrl.currentUser._id" ng-click="$ctrl.removeItem($parent.item)">&times;</span>
-                    <span class="title" ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.title" onbeforesave="$ctrl.editTitle(item)">{{item.title}}</span>
+                    <span class="title" ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.title" onbeforesave="$ctrl.editTitle(item._id, $data)">{{item.title}}</span>
                     <span class="title" ng-if="item.owner !== $ctrl.currentUser._id">{{item.title}}</span>
                 </div>
                 <div class="tight content bordered-bottom">
@@ -36,21 +36,21 @@
                 </div>
                 <div class="small content y-scroll">
                     <p ng-if="item.owner !== $ctrl.currentUser._id">{{item.description}}</p>
-                    <p ng-if="item.owner === $ctrl.currentUser._id" editable-textarea="item.description" e-rows="2" onbeforesave="$ctrl.editDescription(item)">{{item.description}}</p>
+                    <p ng-if="item.owner === $ctrl.currentUser._id" editable-textarea="item.description" e-rows="2" onbeforesave="$ctrl.editDescription(item._id, $data)">{{item.description}}</p>
                 </div>
                 <div class="action">
                     <div id="pricing" class="inner-bordered">
-                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.hourlyRate" onbeforesave="$ctrl.editHourlyRate(item)">Hourly Rental: <span class="green-text float-right">{{item.hourlyRate | currency}}</span></div>
+                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.hourlyRate" onbeforesave="$ctrl.editHourlyRate(item._id, $data)">Hourly Rental: <span class="green-text float-right">{{item.hourlyRate | currency}}</span></div>
                         <div ng-if="item.owner !== $ctrl.currentUser._id">Hourly Rental: <span class="green-text float-right">{{item.hourlyRate | currency}}</span></div>
-                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.dailyRate" onbeforesave="$ctrl.editDailyRate(item)">Daily Rental: <span class="green-text float-right">{{item.dailyRate | currency}}</span></div>
+                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.dailyRate" onbeforesave="$ctrl.editDailyRate(item._id, $data)">Daily Rental: <span class="green-text float-right">{{item.dailyRate | currency}}</span></div>
                         <div ng-if="item.owner !== $ctrl.currentUser._id">Daily Rental: <span class="green-text float-right">{{item.dailyRate | currency}}</span></div>
-                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.purchasePrice" onbeforesave="$ctrl.editPurchasePrice(item)">
-                            Purchase Price:
+                        <div ng-if="item.owner === $ctrl.currentUser._id" editable-text="item.purchasePrice" onbeforesave="$ctrl.editPurchasePrice(item._id, $data)">
+                            Purchase:
                             <span class="green-text float-right" ng-show="item.purchasePrice">{{item.purchasePrice | currency}}</span>
                             <span class="float-right" ng-hide="item.purchasePrice">N/A</span>
                         </div>
                         <div ng-if="item.owner !== $ctrl.currentUser._id">
-                            Purchase Price:
+                            Purchase:
                             <span class="green-text float-right" ng-show="item.purchasePrice">{{item.purchasePrice | currency}}</span>
                             <span class="float-right" ng-hide="item.purchasePrice">N/A</span>
                         </div>
@@ -68,6 +68,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="small reveal" id="rentalModal" data-reveal>
     <h1>Item added to cart</h1>
     <p>Now go to checkout to finish reserving the item</p>
@@ -92,7 +95,7 @@
 <div class="small reveal" id="newItemModal" data-reveal>
     <h1>Post Your Item</h1>
     <h3 ng-if="!$ctrl.currentUser">Please login to post an item</h3>
-    <form novalidate class="simple-form" name="newItemForm">
+    <form novalidate class="simple-form" name="newItemForm" ng-if="$ctrl.currentUser">
         Title: <input type="text" ng-model="$ctrl.newItem.title" /><br />
         Brand: <input type="text" ng-model="$ctrl.newItem.brand" /><br />
         Description: <input type="text" ng-model="$ctrl.newItem.description" /> <br />

@@ -62,35 +62,36 @@ class ItemListCtrl {
 
         // Clear form
         this.newItem = {};
+        this.newItem.photoURLs[0] = '//lorempixel.com/270/135';
         $('#newItemModal').foundation('close');
     }
 
-    editTitle(item) {
-        Meteor.call('items.editTitle', item._id, item.title);
+    editTitle(itemId, newTitle) {
+        Meteor.call('items.editTitle', itemId, newTitle);
     }
 
-    editDescription(item) {
-        Meteor.call('items.editDescription', item._id, item.description);
+    editDescription(itemId, newDescription) {
+        Meteor.call('items.editDescription', itemId, newDescription);
     }
 
-    editHourlyRate(item) {
-        Meteor.call('items.editHourlyRate', item._id, item.hourlyRate);
+    editHourlyRate(itemId, newHourlyRate) {
+        Meteor.call('items.editHourlyRate', itemId, newHourlyRate);
     }
 
-    editDailyRate(item) {
-        Meteor.call('items.editDailyRate', item._id, item.dailyRate);
+    editDailyRate(itemId, newDailyRate) {
+        Meteor.call('items.editDailyRate', itemId, newDailyRate);
     }
 
-    editPurchasePrice(item) {
-        Meteor.call('items.editPurchasePrice', item._id, item.purchasePrice);
+    editPurchasePrice(itemId, newPurchasePrice) {
+        Meteor.call('items.editPurchasePrice', itemId, newPurchasePrice);
     }
 
-    toggleAvailability(item) {
-        Meteor.call('items.toggleAvailability', item._id, !item.available);
+    toggleAvailability(itemId, currentAvailability) {
+        Meteor.call('items.toggleAvailability', item._id, !currentAvailability);
     }
 
-    toggleSold(item) {
-        Meteor.call('items.toggleSold', item._id, !item.sold);
+    toggleSold(itemId, currentSoldStatus) {
+        Meteor.call('items.toggleSold', itemId, !currentSoldStatus);
     }
 
     removeItem(item) {
